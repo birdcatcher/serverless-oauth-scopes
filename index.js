@@ -1,5 +1,16 @@
 const AWS = require('aws-sdk');
-
+const proxy = require('proxy-agent');
+AWS.config.update({
+  retryDelayOptions: {base: 10000},
+  maxRetries: 10,
+});
+if (process.env.HTTPS_PROXY || process.env.HTTP_PROXY) {
+  AWS.config.update({
+    httpOptions: {
+      agent: proxy(proxyUrl)
+    }
+  });
+}
 /**
  * Main function that set OAuth scopes
  * @param {Object} serverless Serverless object

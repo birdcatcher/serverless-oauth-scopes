@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/birdcatcher/serverless-oauth-scopes#readme",
   "dependencies": {
-    "aws-sdk": "^2.245.1"
+    "aws-sdk": "^2.245.1",
+    "proxy-agent": "^3.0.3"
   }
 }
