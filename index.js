@@ -1,10 +1,11 @@
 const AWS = require('aws-sdk');
 const proxy = require('proxy-agent');
+const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY;
 AWS.config.update({
   retryDelayOptions: {base: 10000},
   maxRetries: 10,
 });
-if (process.env.HTTPS_PROXY || process.env.HTTP_PROXY) {
+if (proxyUrl) {
   AWS.config.update({
     httpOptions: {
       agent: proxy(proxyUrl)
